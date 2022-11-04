@@ -1,0 +1,78 @@
+<html>
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/custom.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="card border border-info border-3">
+        <div class="card-header bg-info">
+            <h3>Destination Details</h3>
+        </div>
+        <div class="card-body bg-light">
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">Veszprém</dd>
+
+                <dt class="col-sm-3">Country</dt>
+                <dd class="col-sm-9">Hungary</dd>
+            </dl>
+
+            <h6>Attractions</h6>
+            <table class="table table-bordered bg-white">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Number of Reviews</th>
+                    <th scope="col">Average Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="#" class="link-primary">Zoo</a></td>
+                    <td>Zoo is located in a beautiful environment, not far from lake Balaton. Interesting animals,
+                        feeding actions.
+                    </td>
+                    <td>Entertainment</td>
+                    <td>1</td>
+                    <td>5.0</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+	
+    <div class="card border border-info border-3 mt-3">
+        <div class="card-header bg-info">
+            <h3>Create Attraction</h3>
+        </div>
+        <div class="card-body bg-light">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name"/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category">
+                        <option>Nature</option>
+                        <option>Entertainment</option>
+                        <option>Culture</option>
+                        <option>Festival</option>
+                        <option>History</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

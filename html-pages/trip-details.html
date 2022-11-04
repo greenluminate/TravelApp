@@ -1,0 +1,79 @@
+<html>
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/custom.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+
+    <div class="card border border-info border-3">
+        <div class="card-header bg-info">
+            <h3>Trip Details</h3>
+        </div>
+        <div class="card-body bg-light">
+            <dl class="row">
+                <dt class="col-sm-3">Destination</dt>
+                <dd class="col-sm-9">Budapest</dd>
+
+                <dt class="col-sm-3">Country</dt>
+                <dd class="col-sm-9">Hungary</dd>
+
+                <dt class="col-sm-3">Start Date</dt>
+                <dd class="col-sm-9">2022-08-15</dd>
+
+                <dt class="col-sm-3">End Date</dt>
+                <dd class="col-sm-9">2022-08-17</dd>
+            </dl>
+
+            <h3>Visited Attractions</h3>
+            <table class="table table-bordered bg-white">
+                <thead>
+                <tr>
+                    <th scope="col">Attraction</th>
+                    <th scope="col">Visit Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="#" class="link-primary">Buda Castle</a></td>
+                    <td>2022-08-15</td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="link-primary">Parlament</a></td>
+                    <td>2022-08-16</td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="link-primary">Széchenyi Gyógyfürdő és Uszoda</a></td>
+                    <td>2022-08-16</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card border border-info border-3 mt-3">
+        <div class="card-header bg-info">
+            <h3>Add Visited Attraction</h3>
+        </div>
+        <div class="card-body bg-light">
+            <form>
+                <div class="form-group">
+                    <label for="category">Attraction</label>
+                    <select class="form-control" id="category">
+                        <option id="1">Buda Castle</option>
+                        <option id="2">Parlament</option>
+                        <option id="3">Széchenyi Gyógyfürdő és Uszoda</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="visitDate">Visit Date</label>
+                    <input type="date" class="form-control" id="visitDate"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
