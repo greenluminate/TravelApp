@@ -1,0 +1,5 @@
+rootProject.name = 'travel-phase-3'
+include 'app'
+include 'domain'
+include 'persistence'
+include 'service'

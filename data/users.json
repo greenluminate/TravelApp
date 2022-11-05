@@ -1,0 +1,17 @@
+[ {
+  "id" : 100,
+  "fullName" : "Péter Kovács",
+  "role" : "USER",
+  "credentials" : {
+    "loginName" : "pkovacs",
+    "password" : "pk-secret"
+  }
+}, {
+  "id" : 101,
+  "fullName" : "Sándor Nagy",
+  "role" : "ADMIN",
+  "credentials" : {
+    "loginName" : "snagy",
+    "password" : "ns-secret"
+  }
+} ]

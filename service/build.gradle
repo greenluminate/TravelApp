@@ -1,0 +1,13 @@
+dependencies {
+    implementation project(':domain')
+    implementation project(':persistence')
+    implementation 'org.springframework:spring-tx:5.3.23'
+}
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}

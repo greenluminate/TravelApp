@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+}
+
+allprojects {
+    group 'travel'
+    version '3.0-SNAPSHOT'
+}
+
+repositories {
+    mavenCentral()
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'travel.app.Application'
+    }
+}
+
+/*bootJar {
+    mainClassName = 'travel.app.Application'
+}
+springBoot {
+    mainClassName = 'travel.app.Application'
+}*/
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.springframework.boot'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
