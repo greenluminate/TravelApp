@@ -2,10 +2,8 @@ package travel.persistence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import travel.domain.Destination;
-import travel.domain.Review;
-import travel.domain.Trip;
-import travel.domain.User;
+import org.w3c.dom.Attr;
+import travel.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +41,6 @@ public class TravelRepository {
     }
 
     public List<Review> getReviews() {
-        return  reviewRepository.findAll();
+        return reviewRepository.findAll();
     }
 }

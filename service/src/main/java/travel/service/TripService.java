@@ -9,4 +9,6 @@ public interface TripService {
     Trip findTripById(long id);
 
     List<TripDto> findAllTrips();
+
+    List<TripDto> findUserTrips(long userId);
 }
