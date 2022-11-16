@@ -40,6 +40,12 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-security'
     }
 
+    bootJar {
+        manifest {
+            attributes 'Start-Class': 'travel.app.Application'
+        }
+    }
+
     tasks.named('test') {
         useJUnitPlatform()
     }
