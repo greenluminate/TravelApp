@@ -3,4 +3,8 @@ include 'app'
 include 'domain'
 include 'persistence'
 include 'service'
+include 'controller'
+include 'model'
+include 'security'
+include 'validator'
 

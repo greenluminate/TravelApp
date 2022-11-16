@@ -7,6 +7,10 @@ dependencies {
     implementation project(':domain')
     implementation project(':persistence')
     implementation project(':service')
+    implementation project(':controller')
+    implementation project(':model')
+    implementation project(':security')
+    implementation project(':validator')
 }
 
 tasks.named('test') {
