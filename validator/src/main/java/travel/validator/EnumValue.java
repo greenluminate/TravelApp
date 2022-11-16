@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Documented
 @Constraint(validatedBy = EnumValidator.class)
-public @interface EnumValueValidator {
+public @interface EnumValue {
     Class<? extends Enum<?>> enumClass();
 
     String message() default "Attraction class must be on of them: {enumClass}";

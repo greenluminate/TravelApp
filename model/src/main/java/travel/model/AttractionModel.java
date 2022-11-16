@@ -1,22 +1,24 @@
 package travel.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import travel.domain.Category;
-//import travel.validation.ValueOfEnum;
+
+import travel.validator.EnumValue;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@NoArgsConstructor
-@AllArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AttractionModel {
     private long id;
     private long destinationId;
 
-    @Size(min = 3, max = 100, message = "Name length must be between 3 and 100 chars (inclusive).")
+    @Size(min = 2, max = 100, message = "Name length must be between 2 and 100 chars (inclusive).")
     @NotBlank(message = "Name field must not be blank!")
     private String name;
 
@@ -24,7 +26,7 @@ public class AttractionModel {
     @NotBlank(message = "Description field must not be blank!")
     private String description;
 
-    //@ValueOfEnum(enumClass = Category.class, message = "Invalid attraction category")
+    @EnumValue(enumClass = Category.class, message = "Invalid attraction category")
     @NotBlank(message = "Category field must not be blank!")
     private String category;
 
