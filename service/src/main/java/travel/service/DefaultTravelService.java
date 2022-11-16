@@ -1,10 +1,12 @@
 package travel.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import travel.domain.*;
 import travel.persistence.TravelRepository;
+import travel.security.TravelUserDetails;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,7 +53,8 @@ public class DefaultTravelService implements TravelService {
     }
 
     public User getLoggedInUser() {
-        return loggedInUser;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ((TravelUserDetails) authentication.getPrincipal()).getUser();
     }
 
     @Override
