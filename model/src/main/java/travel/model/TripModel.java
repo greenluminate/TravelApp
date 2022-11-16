@@ -11,9 +11,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TripModel {
+
     private long id;
+
     private long destinationId;
+
     private String destinationName;
+
     private String country;
 
     @NotNull(message = "Start date field Must not be null!")

@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AttractionModel {
+
     private long id;
+
     private long destinationId;
 
     @Size(min = 2, max = 100, message = "Name length must be between 2 and 100 chars (inclusive).")
