@@ -19,9 +19,11 @@
         <module name="travel-phase-3.validator.test" />
         <module name="travel-phase-3.app.test" />
         <module name="travel-phase-3.service.test" />
+        <module name="travel-phase-3.transformer.main" />
         <module name="travel-phase-3.validator.main" />
         <module name="travel-phase-3.model.main" />
         <module name="travel-phase-3.domain.main" />
+        <module name="travel-phase-3.transformer.test" />
         <module name="travel-phase-3.controller.main" />
         <module name="travel-phase-3.model.test" />
         <module name="travel-phase-3.controller.test" />

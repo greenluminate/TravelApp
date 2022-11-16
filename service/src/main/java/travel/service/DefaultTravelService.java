@@ -1,12 +1,14 @@
 package travel.service;
 
+import travel.domain.*;
+import travel.persistence.TravelRepository;
+import travel.security.TravelUserDetails;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import travel.domain.*;
-import travel.persistence.TravelRepository;
-import travel.security.TravelUserDetails;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -126,5 +128,15 @@ public class DefaultTravelService implements TravelService {
         trip.setId(travelRepository.getTrips().get(travelRepository.getTrips().size() - 1).getId() + 1);
         trip.setUser(loggedInUser);
         travelRepository.getTrips().add(trip);
+    }
+
+    @Override
+    public void createVisit(Visit visit) {
+        travelRepository.createVisit(visit);
+    }
+
+    @Override
+    public void createDestination(Destination destination) {
+        travelRepository.createDestination(destination);
     }
 }

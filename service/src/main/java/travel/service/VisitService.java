@@ -9,4 +9,5 @@ public interface VisitService {
     Visit findVisitById(long id);
 
     List<VisitDto> findAllVisits();
+
 }

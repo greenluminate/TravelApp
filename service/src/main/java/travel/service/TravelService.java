@@ -22,4 +22,8 @@ public interface TravelService {
     List<Trip> getTrips(LocalDate startDate, LocalDate endDate);
 
     void createTrip(Trip trip);
+
+    void createVisit(Visit visit);
+
+    void createDestination(Destination destination);
 }
