@@ -17,6 +17,16 @@ public class Visit {
     @ManyToOne(targetEntity = Trip.class)
     private Trip trip;
 
+    public Visit(LocalDate visitDate, Attraction attraction, Trip trip) {
+        this.visitDate = visitDate;
+        this.attraction = attraction;
+        this.trip = trip;
+    }
+
+    public Visit() {
+
+    }
+
     @Override
     public String toString() {
         return "Visit{" +
@@ -69,15 +79,5 @@ public class Visit {
 
     public void setTrip(Trip trip) {
         this.trip = trip;
-    }
-
-    public Visit(LocalDate visitDate, Attraction attraction, Trip trip) {
-        this.visitDate = visitDate;
-        this.attraction = attraction;
-        this.trip = trip;
-    }
-
-    public Visit() {
-
     }
 }

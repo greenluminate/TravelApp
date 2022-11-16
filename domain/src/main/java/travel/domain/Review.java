@@ -1,6 +1,9 @@
 package travel.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +17,17 @@ public class Review {
     private User user;
     @ManyToOne(targetEntity = Attraction.class)
     private Attraction attraction;
+
+    public Review(int rating, String comment, Attraction attraction, User user) {
+        this.rating = rating;
+        this.comment = comment;
+        this.user = user;
+        this.attraction = attraction;
+    }
+
+    public Review() {
+
+    }
 
     @Override
     public String toString() {
@@ -75,16 +89,5 @@ public class Review {
 
     public void setAttraction(Attraction attraction) {
         this.attraction = attraction;
-    }
-
-    public Review(int rating, String comment, Attraction attraction, User user) {
-        this.rating = rating;
-        this.comment = comment;
-        this.user = user;
-        this.attraction = attraction;
-    }
-
-    public Review() {
-
     }
 }

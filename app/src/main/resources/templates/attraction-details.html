@@ -1,1 +1,52 @@
-<!--TODO-->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div th:replace="user-menu.html :: head"></div>
+<body>
+<div th:if="${model.role == 'USER'}">
+    <div th:replace="user-menu.html :: nav"></div>
+</div>
+<div th:if="${model.role == 'ADMIN'}">
+    <div th:replace="admin-menu.html :: nav"></div>
+</div>
+<div class="container">
+    <div class="card border border-info border-3">
+        <div class="card-header bg-info">
+            <h3>Destination Details</h3>
+        </div>
+        <div class="card-body bg-light">
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9" th:text="${model.name}"/>
+
+                <dt class="col-sm-3">Category</dt>
+                <dd class="col-sm-9" th:text="${model.category}"/>
+
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9" th:text="${model.description}"/>
+            </dl>
+
+            <h6>Attractions</h6>
+            <table class="table table-bordered bg-white">
+                <thead>
+                <tr>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Reviewer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="review : ${model.reviewModels}">
+                    <td th:text="${review.rating}"/>
+                    <td th:text="${review.comment}"/>
+                    <td th:text="${review.reviewer}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="user-menu.html :: footer"></div>
+</body>
+</html>

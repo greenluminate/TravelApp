@@ -20,13 +20,6 @@ bootJar {
     }
 }
 
-/*bootJar {
-    mainClassName = 'travel.app.Application'
-}
-springBoot {
-    mainClassName = 'travel.app.Application'
-}*/
-
 subprojects {
     apply plugin: 'java'
     apply plugin: 'io.freefair.lombok'

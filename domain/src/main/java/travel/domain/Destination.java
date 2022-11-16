@@ -17,6 +17,17 @@ public class Destination {
     @OneToMany(targetEntity = Trip.class, mappedBy = "destination", fetch = FetchType.EAGER)
     private List<Trip> trips;
 
+    public Destination(String name, String country) {
+        this.name = name;
+        this.country = country;
+        this.attractions = new ArrayList<>();
+        this.trips = new ArrayList<>();
+    }
+
+    public Destination() {
+
+    }
+
     @Override
     public String toString() {
         return "Destination{" +
@@ -77,16 +88,5 @@ public class Destination {
 
     public void setTrips(List<Trip> trips) {
         this.trips = trips;
-    }
-
-    public Destination(String name, String country) {
-        this.name = name;
-        this.country = country;
-        this.attractions = new ArrayList<>();
-        this.trips = new ArrayList<>();
-    }
-
-    public Destination() {
-
     }
 }

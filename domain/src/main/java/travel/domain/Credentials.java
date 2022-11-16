@@ -1,6 +1,7 @@
 package travel.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
@@ -8,6 +9,15 @@ public class Credentials {
     @Column(name = "login_name")
     private String loginName;
     private String password;
+
+    public Credentials(String loginName, String password) {
+        this.loginName = loginName;
+        this.password = password;
+    }
+
+    public Credentials() {
+
+    }
 
     @Override
     public String toString() {
@@ -44,14 +54,5 @@ public class Credentials {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Credentials(String loginName, String password) {
-        this.loginName = loginName;
-        this.password = password;
-    }
-
-    public Credentials() {
-
     }
 }

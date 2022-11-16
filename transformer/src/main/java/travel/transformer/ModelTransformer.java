@@ -1,10 +1,9 @@
 package travel.transformer;
 
-import travel.domain.*;
-import travel.model.*;
-
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.stereotype.Component;
+import travel.domain.*;
+import travel.model.*;
 
 import java.util.ArrayList;
 import java.util.List;

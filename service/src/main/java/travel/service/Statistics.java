@@ -6,6 +6,20 @@ public class Statistics {
     private int numberOfDestinations;
     private int numberOfAttractions;
     private int numberOfUsers;
+    private int numberOfAllReviews;
+    private int numberOfUserVisits;
+    private int numberOfUserWrittenReviews;
+    public Statistics(int numberOfDestinations, int numberOfAttractions, int numberOfUsers, int numberOfAllReviews, int numberOfUserVisits, int numberOfUserWrittenReviews) {
+        this.numberOfDestinations = numberOfDestinations;
+        this.numberOfAttractions = numberOfAttractions;
+        this.numberOfUsers = numberOfUsers;
+        this.numberOfAllReviews = numberOfAllReviews;
+        this.numberOfUserVisits = numberOfUserVisits;
+        this.numberOfUserWrittenReviews = numberOfUserWrittenReviews;
+    }
+    public Statistics() {
+
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -19,10 +33,6 @@ public class Statistics {
     public int hashCode() {
         return Objects.hash(numberOfDestinations, numberOfAttractions, numberOfUsers, numberOfAllReviews, numberOfUserVisits, numberOfUserWrittenReviews);
     }
-
-    private int numberOfAllReviews;
-    private int numberOfUserVisits;
-    private int numberOfUserWrittenReviews;
 
     @Override
     public String toString() {
@@ -58,18 +68,5 @@ public class Statistics {
 
     public int getNumberOfUserWrittenReviews() {
         return numberOfUserWrittenReviews;
-    }
-
-    public Statistics(int numberOfDestinations, int numberOfAttractions, int numberOfUsers, int numberOfAllReviews, int numberOfUserVisits, int numberOfUserWrittenReviews) {
-        this.numberOfDestinations = numberOfDestinations;
-        this.numberOfAttractions = numberOfAttractions;
-        this.numberOfUsers = numberOfUsers;
-        this.numberOfAllReviews = numberOfAllReviews;
-        this.numberOfUserVisits = numberOfUserVisits;
-        this.numberOfUserWrittenReviews = numberOfUserWrittenReviews;
-    }
-
-    public Statistics() {
-
     }
 }

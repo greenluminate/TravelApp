@@ -21,6 +21,18 @@ public class Attraction {
     @OneToMany(targetEntity = Review.class, mappedBy = "attraction", fetch = FetchType.EAGER)
     private List<Review> reviews;
 
+    public Attraction(String name, String description, Category category) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.reviews = new ArrayList<>();
+        this.visits = new ArrayList<>();
+    }
+
+    public Attraction() {
+
+    }
+
     @Override
     public String toString() {
         return "Attraction{" +
@@ -98,17 +110,5 @@ public class Attraction {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
-    }
-
-    public Attraction(String name, String description, Category category) {
-        this.name = name;
-        this.description = description;
-        this.category = category;
-        this.reviews = new ArrayList<>();
-        this.visits = new ArrayList<>();
-    }
-
-    public Attraction() {
-
     }
 }

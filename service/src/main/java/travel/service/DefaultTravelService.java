@@ -1,14 +1,12 @@
 package travel.service;
 
-import travel.domain.*;
-import travel.persistence.TravelRepository;
-import travel.security.TravelUserDetails;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
+import travel.domain.*;
+import travel.persistence.TravelRepository;
+import travel.security.TravelUserDetails;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,10 +16,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class DefaultTravelService implements TravelService {
-    private User loggedInUser;
-
     @Autowired
     TravelRepository travelRepository;
+    private User loggedInUser;
+
+    public DefaultTravelService(TravelRepository travelRepository) {
+        this.travelRepository = travelRepository;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -34,10 +35,6 @@ public class DefaultTravelService implements TravelService {
     @Override
     public int hashCode() {
         return Objects.hash(loggedInUser, travelRepository);
-    }
-
-    public DefaultTravelService(TravelRepository travelRepository) {
-        this.travelRepository = travelRepository;
     }
 
     @Override

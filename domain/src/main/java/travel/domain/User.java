@@ -21,6 +21,17 @@ public class User {
     @Embedded
     private Credentials credentials;
 
+    public User(String fullName, List<Trip> trips, Role role, List<Review> reviews, Credentials credentials) {
+        this.fullName = fullName;
+        this.trips = trips;
+        this.role = role;
+        this.reviews = reviews;
+        this.credentials = credentials;
+    }
+
+    public User() {
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -90,16 +101,5 @@ public class User {
 
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
-    }
-
-    public User(String fullName, List<Trip> trips, Role role, List<Review> reviews, Credentials credentials) {
-        this.fullName = fullName;
-        this.trips = trips;
-        this.role = role;
-        this.reviews = reviews;
-        this.credentials = credentials;
-    }
-
-    public User() {
     }
 }

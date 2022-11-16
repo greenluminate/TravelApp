@@ -24,6 +24,18 @@ public class Trip {
     @ManyToOne(targetEntity = User.class)
     private User user;
 
+    public Trip(LocalDate startDate, LocalDate endDate, User user, Destination destination) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.visits = new ArrayList<>();
+        this.destination = destination;
+        this.user = user;
+    }
+
+    public Trip() {
+
+    }
+
     @Override
     public String toString() {
         return "Trip{" +
@@ -95,17 +107,5 @@ public class Trip {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Trip(LocalDate startDate, LocalDate endDate, User user, Destination destination) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.visits = new ArrayList<>();
-        this.destination = destination;
-        this.user = user;
-    }
-
-    public Trip() {
-
     }
 }
