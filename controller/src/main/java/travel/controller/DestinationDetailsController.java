@@ -1,5 +1,12 @@
 package travel.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import travel.domain.Attraction;
 import travel.domain.Category;
 import travel.domain.Destination;
@@ -9,14 +16,6 @@ import travel.model.AttractionModel;
 import travel.service.DestinationService;
 import travel.service.TravelService;
 import travel.transformer.ModelTransformer;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -40,7 +39,10 @@ public class DestinationDetailsController {
         User user = travelService.getLoggedInUser();
         travelService.authenticateUser(user.getCredentials());
 
-        Destination destination = destinationService.findDestinationById(Long.parseLong(destinationId));
+        //Destination destination = destinationService.findDestinationById(Long.parseLong(destinationId));
+        Destination destination = travelService.getDestinations()
+                .stream().filter(d -> d.getId() == Long.parseLong(destinationId))
+                .findFirst().orElse(null);
 
         AttractionListModel attractionListModel = new AttractionListModel(
                 Long.parseLong(destinationId),

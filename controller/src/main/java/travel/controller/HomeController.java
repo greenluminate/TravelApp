@@ -1,14 +1,13 @@
 package travel.controller;
 
-import travel.domain.User;
-import travel.model.HomeModel;
-import travel.service.Statistics;
-import travel.service.TravelService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import travel.domain.User;
+import travel.model.HomeModel;
+import travel.service.Statistics;
+import travel.service.TravelService;
 
 @Controller
 public class HomeController {
@@ -28,7 +27,7 @@ public class HomeController {
         homeModel.setNumOfDest(stat.getNumberOfDestinations());
         homeModel.setNumOfAttr(stat.getNumberOfAttractions());
         homeModel.setNumOfUsers(stat.getNumberOfUsers());
-        homeModel.setNumOfAllReviews(stat.getNumberOfUserWrittenReviews());
+        homeModel.setNumOfAllReviews(stat.getNumberOfAllReviews());
         homeModel.setNumOfMyVisits(stat.getNumberOfUserVisits());
         homeModel.setNumOfMyReviews(stat.getNumberOfUserWrittenReviews());
 

@@ -1,12 +1,5 @@
 package travel.controller;
 
-import travel.domain.*;
-import travel.model.*;
-import travel.service.AttractionService;
-import travel.service.TravelService;
-import travel.service.TripService;
-import travel.transformer.ModelTransformer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,6 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import travel.domain.Attraction;
+import travel.domain.Trip;
+import travel.domain.User;
+import travel.domain.Visit;
+import travel.model.TripModel;
+import travel.model.VisitListModel;
+import travel.model.VisitModel;
+import travel.service.AttractionService;
+import travel.service.TravelService;
+import travel.service.TripService;
+import travel.transformer.ModelTransformer;
 
 import javax.validation.Valid;
 
@@ -37,7 +41,10 @@ public class TripDetailsController {
     public VisitListModel createAttractionListModel(String tripId) {
         User user = travelService.getLoggedInUser();
         travelService.authenticateUser(user.getCredentials());
-        Trip trip = tripService.findTripById(Long.parseLong(tripId));
+        //Trip trip = tripService.findTripById(Long.parseLong(tripId));
+        Trip trip = user.getTrips().stream()
+                .filter(t -> t.getId() == Long.parseLong(tripId))
+                .findFirst().orElse(null);
 
         return new VisitListModel(
                 trip.getId(),
@@ -59,7 +66,10 @@ public class TripDetailsController {
         } else {
             User user = travelService.getLoggedInUser();
             travelService.authenticateUser(user.getCredentials());
-            Trip trip = tripService.findTripById(visitModel.getTripId());
+            //Trip trip = tripService.findTripById(visitModel.getTripId());
+            Trip trip = user.getTrips().stream()
+                    .filter(t -> t.getId() == visitModel.getTripId())
+                    .findFirst().orElse(null);
             Attraction attraction = attractionService.findAttractionById(visitModel.getAttractionId());
 
             Visit visit = new Visit();
@@ -70,13 +80,13 @@ public class TripDetailsController {
             travelService.createVisit(visit);
 
             redirectAttributes.addFlashAttribute("successMessage", "Visit added successfully");
-            result = "redirect:/my-trips/trip-details?tripId=" + visitModel.getTripId();
+            result = "redirect:/trip-details?tripId=" + visitModel.getTripId();
         }
         return result;
     }
 
-    @GetMapping(value = "/my-trips/trip-details", params = "tripId")
-    public String destinations() {
+    @GetMapping(value = "/trip-details", params = "tripId")
+    public String trips() {
         return "trip-details";
     }
 }
