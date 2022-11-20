@@ -1,12 +1,13 @@
-<html lang="en">
-<head>
-    <link href="../static/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../static/css/custom.css" rel="stylesheet"/>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
     <title>Destinations</title>
 </head>
 <body>
+<div th:replace="fragments/navbar-chooser :: navbarChoice(@{model.role})"></div>
 <div class="container">
-
     <div class="card border border-info border-3">
         <div class="card-header bg-info">
             <h3>List of Destinations</h3>
@@ -21,15 +22,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><a class="link-primary" href="#">Budapest</a></td>
-                    <td>Hungary</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td><a class="link-primary" href="#">Veszprém</a></td>
-                    <td>Hungary</td>
-                    <td>1</td>
+                <tr th:each="destination : ${model.destinationModels}">
+                    <td><a class="link-primary"
+                           th:href="@{/destinations/destination-details(destinationId=${destination.id})}"
+                           th:text="${destination.country}">
+                    </a></td>
+                    <td th:text="${destination.name}"></td>
+                    <td th:text="${destination.numberOfAttractions}">1</td>
                 </tr>
                 </tbody>
             </table>
@@ -53,7 +52,7 @@
             </form>
         </div>
     </div>
-
 </div>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

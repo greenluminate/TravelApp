@@ -1,12 +1,13 @@
-<html lang="en">
-<head>
-    <link href="../static/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../static/css/custom.css" rel="stylesheet"/>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
     <title>My Trips</title>
 </head>
 <body>
+<div th:replace="fragments/navbar-chooser :: navbarChoice(@{model.role})"></div>
 <div class="container">
-
     <div class="card border border-info border-3">
         <div class="card-header bg-info">
             <h3>My Trips</h3>
@@ -23,31 +24,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><a class="link-primary" href="#">Budapest</a></td>
-                    <td>Hungary</td>
-                    <td>2022-08-15</td>
-                    <td>2022-08-17</td>
-                    <td><a class="link-primary" href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td><a class="link-primary" href="#">Veszprém</a></td>
-                    <td>Hungary</td>
-                    <td>2022-08-20</td>
-                    <td>2022-08-21</td>
-                    <td><a class="link-primary" href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td><a class="link-primary" href="#">Budapest</a></td>
-                    <td>Hungary</td>
-                    <td>2022-09-01</td>
-                    <td>2022-09-01</td>
-                    <td><a class="link-primary" href="#">Details</a></td>
+                <tr th:each="trip : ${model.tripModels}">
+                    <td><a class="link-primary"
+                           th:href="@{/destinations/destination-details(destinationId=${trip.destinationId})}"
+                           th:text="${trip.destinationName}">
+                    </a></td>
+                    <td th:text="${trip.country}"></td>
+                    <td th:text="${trip.startDate}"></td>
+                    <td th:text="${trip.endDate}"></td>
+                    <td><a class="link-primary" th:href="@{/trip-details(tripId=${trip.id})}">Details</a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

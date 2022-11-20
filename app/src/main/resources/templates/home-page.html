@@ -2,16 +2,11 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<div th:replace="user-menu.html :: head"></div>
+<head th:replace="fragments/head :: head">
+</head>
 <body>
-
-<div th:if="${model.role == 'USER'}">
-    <div th:replace="user-menu.html :: nav"></div>
-</div>
-<div th:if="${model.role == 'ADMIN'}">
-    <div th:replace="admin-menu.html :: nav"></div>
-</div>
-
+<body>
+<div th:replace="fragments/navbar-chooser :: navbarChoice(@{model.role})"></div>
 <div class="container">
     <div class="card border border-info border-3">
         <div class="card-header bg-info">
@@ -55,6 +50,6 @@
         </div>
     </div>
 </div>
-<div th:replace="user-menu.html :: footer"></div>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
