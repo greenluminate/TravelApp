@@ -1,0 +1,8 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="navbarChoice(modelRole)" th:switch="*{__${modelRole}__}">
+    <div th:case="'USER'">
+        <div th:replace="fragments/navbar-user :: navbarUser"></div>
+    </div>
+    <div th:case="'ADMIN'">
+        <div th:replace="fragments/navbar-admin :: navbarAdmin"></div>
+    </div>
+</div>
