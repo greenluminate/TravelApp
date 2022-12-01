@@ -34,7 +34,7 @@
             </table>
         </div>
     </div>
-    <div class="card border border-info border-3 mt-3">
+    <div th:if="${model.role == 'ADMIN'}" class="card border border-info border-3 mt-3">
         <div class="card-header bg-info">
             <h3>Create Destination</h3>
         </div>
