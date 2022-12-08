@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
     <title>Error</title>
 </head>
 <body>
-<div th:replace="fragments/navbar-chooser :: navbarChoice(@{model.role})"></div>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="navbar-brand">Travel</div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" id="navItemContainer">
+            <li class="nav-item" id="navHome">
+                <a class="nav-link" href="home-page.html" th:href="@{/home}">Home</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/logout}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
 <div class="container">
     <h3>Unexpected error occurred.</h3>
 </div>
