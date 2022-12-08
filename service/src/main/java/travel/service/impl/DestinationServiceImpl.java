@@ -16,17 +16,6 @@ public class DestinationServiceImpl implements DestinationService {
     @Autowired
     private DestinationRepository destinationRepository;
 
-    /*@Override
-    public Destination findDestinationById(long id) {
-        return destinationRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<DestinationDto> findAllDestinations() {
-        return destinationRepository.findAll().stream()
-                .map(this::convertDestinationToDto).collect(Collectors.toList());
-    }*/
-
     private DestinationDto convertDestinationToDto(Destination destination) {
         DestinationDto destDTO = new DestinationDto();
         destDTO.setId(destination.getId());
