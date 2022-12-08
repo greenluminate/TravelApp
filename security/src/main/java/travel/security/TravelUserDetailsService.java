@@ -5,18 +5,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import travel.persistence.TravelRepository;
+import travel.persistence.UserRepository;
 
 @Service
 public class TravelUserDetailsService implements UserDetailsService {
-
     @Autowired
-    private TravelRepository travelRepository;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new TravelUserDetails(travelRepository
-                .getUsers()
+        return new TravelUserDetails(userRepository.findAll()
                 .stream()
                 .filter(x -> x.getCredentials().getLoginName().equals(username))
                 .findFirst().orElse(null));
