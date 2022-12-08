@@ -10,7 +10,7 @@
 <div class="container">
     <div class="card border border-info border-3">
         <div class="card-header bg-info">
-            <h3>Destination Details</h3>
+            <h3>Attraction Details</h3>
         </div>
         <div class="card-body bg-light">
             <dl class="row">
@@ -18,7 +18,7 @@
                 <dd class="col-sm-9" th:text="${model.name}"/>
 
                 <dt class="col-sm-3">Category</dt>
-                <dd class="col-sm-9" th:text="${model.category}"/>
+                <dd class="col-sm-9" th:text="${#strings.capitalize(#strings.toLowerCase(model.category))}"/>
 
                 <dt class="col-sm-3">Description</dt>
                 <dd class="col-sm-9" th:text="${model.description}"/>
