@@ -1,15 +1,13 @@
 package travel.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import travel.domain.Category;
-
 import travel.validator.EnumValue;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor

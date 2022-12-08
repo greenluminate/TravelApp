@@ -15,6 +15,6 @@ public class ReviewModel {
     private int rating;
 
     private String comment;
-    
+
     private String reviewer;
 }
