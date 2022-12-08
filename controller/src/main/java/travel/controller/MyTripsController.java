@@ -1,6 +1,7 @@
 package travel.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class MyTripsController {
         return new TripListModel(user.getRole().toString(), modelTransformer.TransformTripList(user.getTrips()));
     }
 
+    @Secured({" ROLE_USER "})
     @GetMapping("/my-trips")
     public String destinations(Model model) {
         return "my-trips";
