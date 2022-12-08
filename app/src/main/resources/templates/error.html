@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <title>Error</title>
+</head>
+<body>
+<div th:replace="fragments/navbar-chooser :: navbarChoice(@{model.role})"></div>
+<div class="container">
+    <h3>Unexpected error occurred.</h3>
+</div>
+</body>
+</html>
