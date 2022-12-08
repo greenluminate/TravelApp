@@ -8,14 +8,14 @@ import java.util.Collection;
 import java.util.List;
 
 public class TravelUserDetails implements UserDetails {
-    public User getUser() {
-        return user;
-    }
-
     private User user;
 
     public TravelUserDetails(User user) {
         this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override
