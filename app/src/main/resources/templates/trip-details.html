@@ -37,7 +37,10 @@
                 </thead>
                 <tbody>
                 <tr th:each="visit : ${model.visitModels}">
-                    <td><a class="link-primary" href="#" th:text="${visit.attractionName}"></a></td>
+                    <td><a class="link-primary"
+                           th:href="@{/destinations/attraction-details(attractionId=${visit.attractionId})}"
+                           th:text="${visit.attractionName}">
+                    </a></td>
                     <td th:text="${visit.visitDate}"></td>
                 </tr>
                 </tbody>
@@ -50,19 +53,45 @@
             <h3>Add Visited Attraction</h3>
         </div>
         <div class="card-body bg-light">
-            <form>
+            <form method="post"
+                  th:action="@{'/my-trips/add-visit?tripId='+${model.tripId}}"
+                  th:object="${visitModel}">
+
+                <p class="alert-success alert"
+                   th:if="${successMessage}"
+                   th:text="${successMessage}">Visit added successfully
+                </p>
+
                 <div class="form-group">
-                    <label for="category">Attraction</label>
-                    <select class="form-control" id="category">
-                        <option id="1">Buda Castle</option>
-                        <option id="2">Parlament</option>
-                        <option id="3">Széchenyi Gyógyfürdő és Uszoda</option>
+                    <label for="attraction">Attraction</label>
+                    <select class="form-control" id="attraction" th:field="*{attractionId}">
+                        <option th:each="attraction : ${model.possibleAttractions}"
+                                th:id="${attraction.id}"
+                                th:text="${attraction.name}"
+                                th:value="${attraction.id}">
+                        </option>
                     </select>
+
+                    <span class="text-danger"
+                          th:errors="*{attractionName}"
+                          th:if="${#fields.hasErrors('attractionName')}">Name Error>
+                    </span>
                 </div>
+
                 <div class="form-group">
                     <label for="visitDate">Visit Date</label>
-                    <input class="form-control" id="visitDate" type="date"/>
+                    <input class="form-control" id="visitDate" th:field="*{visitDate}"
+                           th:max="${model.endDate}"
+                           th:min="${model.startDate}"
+                           th:value="${__${model.startDate}__}"
+                           type="date"/>
+
+                    <span class="text-danger"
+                          th:errors="*{visitDate}"
+                          th:if="${#fields.hasErrors('visitDate')}">Visit Date Error>
+                    </span>
                 </div>
+
                 <button class="btn btn-primary" type="submit">Add</button>
             </form>
         </div>
