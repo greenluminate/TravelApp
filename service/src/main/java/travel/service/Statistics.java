@@ -9,6 +9,7 @@ public class Statistics {
     private int numberOfAllReviews;
     private int numberOfUserVisits;
     private int numberOfUserWrittenReviews;
+
     public Statistics(int numberOfDestinations, int numberOfAttractions, int numberOfUsers, int numberOfAllReviews, int numberOfUserVisits, int numberOfUserWrittenReviews) {
         this.numberOfDestinations = numberOfDestinations;
         this.numberOfAttractions = numberOfAttractions;
@@ -17,6 +18,7 @@ public class Statistics {
         this.numberOfUserVisits = numberOfUserVisits;
         this.numberOfUserWrittenReviews = numberOfUserWrittenReviews;
     }
+
     public Statistics() {
 
     }
