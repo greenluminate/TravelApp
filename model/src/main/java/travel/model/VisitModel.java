@@ -4,7 +4,6 @@ package travel.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -24,9 +23,12 @@ public class VisitModel {
 
     @NotNull(message = "Visit date field Must not be null!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@ValidDateRange(startDate = , endDate = )
     private LocalDate visitDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate minDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate maxDate;
 }
