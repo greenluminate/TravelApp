@@ -8,17 +8,20 @@ import travel.domain.User;
 import travel.model.HomeModel;
 import travel.service.Statistics;
 import travel.service.TravelService;
+import travel.service.UserService;
 
 @Controller
 public class HomeController {
     @Autowired
     private TravelService travelService;
+    @Autowired
+    private UserService userService;
 
     @ModelAttribute("model")
     public HomeModel createHomeModel() {
+        User user = userService.getLoggedInUser();
+        userService.authenticateUser(user.getCredentials());
 
-        User user = travelService.getLoggedInUser();
-        travelService.authenticateUser(user.getCredentials());
         Statistics stat = travelService.getStatistics();
 
         HomeModel homeModel = new HomeModel();

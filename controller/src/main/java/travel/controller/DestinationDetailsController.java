@@ -13,8 +13,9 @@ import travel.domain.Destination;
 import travel.domain.User;
 import travel.model.AttractionListModel;
 import travel.model.AttractionModel;
+import travel.service.AttractionService;
 import travel.service.DestinationService;
-import travel.service.TravelService;
+import travel.service.UserService;
 import travel.transformer.ModelTransformer;
 
 import javax.validation.Valid;
@@ -22,8 +23,9 @@ import javax.validation.Valid;
 @Controller
 public class DestinationDetailsController {
     @Autowired
-    private TravelService travelService;
-
+    private UserService userService;
+    @Autowired
+    private AttractionService attractionService;
     @Autowired
     private DestinationService destinationService;
     @Autowired
@@ -36,16 +38,15 @@ public class DestinationDetailsController {
 
     @ModelAttribute("model")
     public AttractionListModel createAttractionListModel(String destinationId) {
-        User user = travelService.getLoggedInUser();
-        travelService.authenticateUser(user.getCredentials());
+        long destinationIdLong = Long.parseLong(destinationId);
 
-        //Destination destination = destinationService.findDestinationById(Long.parseLong(destinationId));
-        Destination destination = travelService.getDestinations()
-                .stream().filter(d -> d.getId() == Long.parseLong(destinationId))
-                .findFirst().orElse(null);
+        User user = userService.getLoggedInUser();
+        userService.authenticateUser(user.getCredentials());
+
+        Destination destination = destinationService.getDestinationById(destinationIdLong);
 
         AttractionListModel attractionListModel = new AttractionListModel(
-                Long.parseLong(destinationId),
+                destinationIdLong,
                 destination.getName(),
                 destination.getCountry(),
                 user.getRole().toString(),
@@ -53,7 +54,7 @@ public class DestinationDetailsController {
         );
 
         for (AttractionModel attrModel : attractionListModel.getAttractionModels()) {
-            attrModel.setDestinationId(Long.parseLong(destinationId));
+            attrModel.setDestinationId(destinationIdLong);
         }
 
         return attractionListModel;
@@ -71,7 +72,7 @@ public class DestinationDetailsController {
             attraction.setDescription(attractionModel.getDescription());
             attraction.setCategory(Category.valueOf(attractionModel.getCategory()));
 
-            travelService.createAttraction(attractionModel.getDestinationId(), attraction);
+            attractionService.createAttraction(attractionModel.getDestinationId(), attraction);
 
             redirectAttributes.addFlashAttribute("successMessage", "Attraction added successfully");
             result = "redirect:/destinations/destination-details?destinationId=" + attractionModel.getDestinationId();

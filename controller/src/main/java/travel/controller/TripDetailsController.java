@@ -11,12 +11,11 @@ import travel.domain.Attraction;
 import travel.domain.Trip;
 import travel.domain.User;
 import travel.domain.Visit;
-import travel.model.TripModel;
 import travel.model.VisitListModel;
 import travel.model.VisitModel;
 import travel.service.AttractionService;
-import travel.service.TravelService;
-import travel.service.TripService;
+import travel.service.UserService;
+import travel.service.VisitService;
 import travel.transformer.ModelTransformer;
 
 import javax.validation.Valid;
@@ -24,11 +23,11 @@ import javax.validation.Valid;
 @Controller
 public class TripDetailsController {
     @Autowired
-    private TravelService travelService;
-    @Autowired
     private AttractionService attractionService;
     @Autowired
-    private TripService tripService;
+    private UserService userService;
+    @Autowired
+    private VisitService visitService;
     @Autowired
     private ModelTransformer modelTransformer;
 
@@ -39,9 +38,9 @@ public class TripDetailsController {
 
     @ModelAttribute("model")
     public VisitListModel createAttractionListModel(String tripId) {
-        User user = travelService.getLoggedInUser();
-        travelService.authenticateUser(user.getCredentials());
-        //Trip trip = tripService.findTripById(Long.parseLong(tripId));
+        User user = userService.getLoggedInUser();
+        userService.authenticateUser(user.getCredentials());
+
         Trip trip = user.getTrips().stream()
                 .filter(t -> t.getId() == Long.parseLong(tripId))
                 .findFirst().orElse(null);
@@ -64,12 +63,13 @@ public class TripDetailsController {
         if (bindingResult.hasErrors()) {
             result = "trip-details";
         } else {
-            User user = travelService.getLoggedInUser();
-            travelService.authenticateUser(user.getCredentials());
-            //Trip trip = tripService.findTripById(visitModel.getTripId());
+            User user = userService.getLoggedInUser();
+            userService.authenticateUser(user.getCredentials());
+
             Trip trip = user.getTrips().stream()
                     .filter(t -> t.getId() == visitModel.getTripId())
                     .findFirst().orElse(null);
+
             Attraction attraction = attractionService.findAttractionById(visitModel.getAttractionId());
 
             Visit visit = new Visit();
@@ -77,15 +77,19 @@ public class TripDetailsController {
             visit.setTrip(trip);
             visit.setVisitDate(visitModel.getVisitDate());
 
-            travelService.createVisit(visit);
+            visitService.createVisit(visit);
+
+            if (trip != null) {
+                trip.getVisits().add(visit);
+            }
 
             redirectAttributes.addFlashAttribute("successMessage", "Visit added successfully");
-            result = "redirect:/trip-details?tripId=" + visitModel.getTripId();
+            result = "redirect:/my-trips/trip-details?tripId=" + visitModel.getTripId();
         }
         return result;
     }
 
-    @GetMapping(value = "/trip-details", params = "tripId")
+    @GetMapping(value = "/my-trips/trip-details", params = "tripId")
     public String trips() {
         return "trip-details";
     }

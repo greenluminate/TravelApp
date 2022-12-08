@@ -1,28 +1,26 @@
 package travel.controller;
 
-import travel.domain.User;
-import travel.model.TripListModel;
-import travel.service.TravelService;
-import travel.transformer.ModelTransformer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import travel.domain.User;
+import travel.model.TripListModel;
+import travel.service.UserService;
+import travel.transformer.ModelTransformer;
 
 @Controller
 public class MyTripsController {
     @Autowired
-    private TravelService travelService;
-
+    private UserService userService;
     @Autowired
     private ModelTransformer modelTransformer;
 
     @ModelAttribute("model")
     public TripListModel createTripListModel() {
-        User user = travelService.getLoggedInUser();
-        travelService.authenticateUser(user.getCredentials());
+        User user = userService.getLoggedInUser();
+        userService.authenticateUser(user.getCredentials());
 
         return new TripListModel(user.getRole().toString(), modelTransformer.TransformTripList(user.getTrips()));
     }
