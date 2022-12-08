@@ -10,4 +10,5 @@ public interface VisitService {
 
     List<VisitDto> findAllVisits();
 
+    void createVisit(Visit visit);
 }

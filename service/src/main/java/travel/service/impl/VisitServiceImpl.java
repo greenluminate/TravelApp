@@ -1,10 +1,9 @@
 package travel.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import travel.domain.Review;
 import travel.domain.Visit;
 import travel.persistence.VisitRepository;
-import travel.persistence.dto.ReviewDto;
 import travel.persistence.dto.VisitDto;
 import travel.service.VisitService;
 
@@ -13,14 +12,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class VisitServiceImpl implements VisitService {
+    @Autowired
     private VisitRepository visitRepository;
-
-    public VisitServiceImpl(VisitRepository visitRepository) {
-        this.visitRepository = visitRepository;
-    }
-
-    public VisitServiceImpl() {
-    }
 
     @Override
     public Visit findVisitById(long id) {
@@ -39,5 +32,17 @@ public class VisitServiceImpl implements VisitService {
         visitDTO.setVisitDate(visit.getVisitDate());
         visitDTO.setAttractionId(visit.getAttraction().getId());
         return visitDTO;
+    }
+
+    @Override
+    public void createVisit(Visit visit) {
+        List<Visit> visits = visitRepository.findAll();
+        if (visits.size() == 0) {
+            visit.setId(1);
+        } else {
+            visit.setId(visits.get(visits.size() - 1).getId() + 1);
+        }
+
+        visitRepository.save(visit);
     }
 }

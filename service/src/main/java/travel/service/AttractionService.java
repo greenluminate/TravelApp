@@ -9,4 +9,6 @@ public interface AttractionService {
     Attraction findAttractionById(long id);
 
     List<AttractionDto> findAllAttractions();
+
+    void createAttraction(long destinationId, Attraction attraction);
 }

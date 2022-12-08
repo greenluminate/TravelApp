@@ -3,7 +3,9 @@ package travel.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import travel.domain.Attraction;
+import travel.domain.Destination;
 import travel.persistence.AttractionRepository;
+import travel.persistence.DestinationRepository;
 import travel.persistence.dto.AttractionDto;
 import travel.service.AttractionService;
 
@@ -12,11 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class AttractionServiceImpl implements AttractionService {
+    @Autowired
     private AttractionRepository attractionRepository;
-
-    public AttractionServiceImpl(AttractionRepository attractionRepository) {
-        this.attractionRepository = attractionRepository;
-    }
+    @Autowired
+    private DestinationRepository destinationRepository;
 
     @Override
     public Attraction findAttractionById(long id) {
@@ -38,4 +39,20 @@ public class AttractionServiceImpl implements AttractionService {
         attrDTO.setCategory(attraction.getCategory());
         return attrDTO;
     }
+
+    @Override
+    public void createAttraction(long destinationId, Attraction attraction) {
+        Destination destination = destinationRepository.findById(destinationId).orElse(null);
+        attraction.setDestination(destination);
+
+        List<Attraction> attractions = attractionRepository.findAll();
+        attraction.setId(attractions.get(attractions.size() - 1).getId() + 1);
+
+        if (destination != null) {
+            destination.getAttractions().add(attraction);
+        }
+
+        attractionRepository.save(attraction);
+    }
+
 }

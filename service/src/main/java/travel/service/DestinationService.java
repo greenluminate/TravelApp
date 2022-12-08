@@ -1,12 +1,13 @@
 package travel.service;
 
 import travel.domain.Destination;
-import travel.persistence.dto.DestinationDto;
 
 import java.util.List;
 
 public interface DestinationService {
-    Destination findDestinationById(long id);
+    List<Destination> getDestinations();
 
-    List<DestinationDto> findAllDestinations();
+    Destination getDestinationById(long destinationId);
+
+    void createDestination(Destination destination);
 }
