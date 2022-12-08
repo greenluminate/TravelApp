@@ -32,7 +32,12 @@
                     <td th:text="${trip.country}"></td>
                     <td th:text="${trip.startDate}"></td>
                     <td th:text="${trip.endDate}"></td>
-                    <td><a class="link-primary" th:href="@{/trip-details(tripId=${trip.id})}">Details</a></td>
+                    <td>
+                        <a class="link-primary"
+                           th:href="@{/my-trips/trip-details(tripId=${trip.id})}"
+                           th:text="Details">
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

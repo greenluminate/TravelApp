@@ -1,4 +1,4 @@
-<nav th:fragment="navbarUser" class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" th:fragment="navbarUser">
     <div class="navbar-brand">Travel</div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto" id="navItemContainer">
@@ -12,7 +12,7 @@
                 <a class="nav-link" href="../my-trips.html" th:href="@{/my-trips}">My Trips</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+        <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/logout}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
         </form>
     </div>

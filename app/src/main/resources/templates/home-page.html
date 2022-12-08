@@ -35,17 +35,37 @@
                 <dt class="col-sm-4">Number of Attractions</dt>
                 <dd class="col-sm-6" th:text="${model.numOfAttr}"/>
 
-                <dt class="col-sm-4" th:if="${model.role == 'ADMIN'}">Number of Users</dt>
-                <dd class="col-sm-6" th:if="${model.role == 'ADMIN'}" th:text="${model.numOfUsers}"/>
+                <dt class="col-sm-4"
+                    th:if="${model.role == 'ADMIN'}">Number of Users
+                </dt>
+                <dd class="col-sm-6"
+                    th:if="${model.role == 'ADMIN'}"
+                    th:text="${model.numOfUsers}"
+                />
 
-                <dt class="col-sm-4" th:if="${model.role == 'ADMIN'}">Number of Reviews</dt>
-                <dd class="col-sm-6" th:if="${model.role == 'ADMIN'}" th:text="${model.numOfAllReviews}"/>
+                <dt class="col-sm-4"
+                    th:if="${model.role == 'ADMIN'}">Number of All Reviews
+                </dt>
+                <dd class="col-sm-6"
+                    th:if="${model.role == 'ADMIN'}"
+                    th:text="${model.numOfAllReviews}"
+                />
 
-                <dt class="col-sm-4" th:if="${model.role == 'USER'}">Number of My Visits</dt>
-                <dd class="col-sm-6" th:if="${model.role == 'USER'}" th:text="${model.numOfMyVisits}"/>
+                <dt class="col-sm-4"
+                    th:if="${model.role == 'USER'}">Number of My Visits
+                </dt>
+                <dd class="col-sm-6"
+                    th:if="${model.role == 'USER'}"
+                    th:text="${model.numOfMyVisits}"
+                />
 
-                <dt class="col-sm-4" th:if="${model.role == 'USER'}">Number of Reviews I wrote</dt>
-                <dd class="col-sm-6" th:if="${model.role == 'USER'}" th:text="${model.numOfMyReviews}"/>
+                <dt class="col-sm-4"
+                    th:if="${model.role == 'USER'}">Number of Reviews I wrote
+                </dt>
+                <dd class="col-sm-6"
+                    th:if="${model.role == 'USER'}"
+                    th:text="${model.numOfMyReviews}"
+                />
             </dl>
         </div>
     </div>
