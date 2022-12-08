@@ -15,14 +15,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/css/**").permitAll()
-            .antMatchers("/js/**").permitAll()
-            .antMatchers("/my-trips").hasAuthority("USER")
-            //.antMatchers("/add-attraction").hasAuthority("ADMIN")
-            .antMatchers("/h2-console/**").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin().permitAll();
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/my-trips").hasAuthority("USER")
+                .antMatchers("/home").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().permitAll();
     }
 
     @Bean

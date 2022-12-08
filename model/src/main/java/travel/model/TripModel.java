@@ -27,6 +27,4 @@ public class TripModel {
     @NotNull(message = "End date field Must not be null!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String endDate;
-
-    //ToDo: finish validations for Models after it works in the browser
 }
